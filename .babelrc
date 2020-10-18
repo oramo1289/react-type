@@ -1,0 +1,7 @@
+{
+    "presets": ["@babel/preset-env", "@babel/preset-react"]
+}
+/**
+@babel/preset-env lets you use the latest JavaScript without having a headache of what plugins you should use. 
+@babel/preset-react is a plugin that can interpret the JSX syntax and transforms it into JavaScript DOM syntax.
+*/
