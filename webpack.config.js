@@ -1,28 +1,34 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-console.log('Hola');
-console.log(path.resolve(__dirname));
-console.log(path.resolve(__dirname, 'src', 'index.jsx'));
-console.log(path.join(__dirname, 'src', 'index.jsx'));
-console.log(path.resolve(__dirname, 'public', 'index.html'));
-console.log(path.join(__dirname, 'public', 'index.html'));
 module.exports = {
-    entry: './src/index.jsx', //the file to be used at first once Webpack starts to work.
+    mode: "development",
+    entry: './src/index.tsx', //the file to be used at first once Webpack starts to work.
+    devtool: 'inline-source-map',
     output: {
         filename: 'bundle.js', // the file to be exported by the Webpack process.
         path: path.resolve(__dirname, 'dist')
     },
-    mode: "development",
     resolve: {
-        extensions: ['.js', '.jsx'] //the file extensions to be used by Webpack.
+        extensions: ['.tsx', '.ts','.js', '.jsx' ] //the file extensions to be used by Webpack.
     },
     module: {
         rules: [ // the rules Webpack will use when it works on the files
             {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                use: ['babel-loader']
+                test: /\.tsx?$/,
+                use: ['ts-loader'],
+                exclude: /node_modules/
+            },
+            // {
+            //     test: /\.jsx?$/,
+            //     use: ['babel-loader'],
+            //     exclude: /node_modules/,
+            // },
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                loader: "source-map-loader",
             },
             {
                 test: /\.s(a|c)ss$/,
@@ -42,11 +48,13 @@ module.exports = {
         ]
     },
     plugins: [//To make Webpack recognize and use this file
-        new HtmlWebpackPlugin(
-            {
+        // new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
                 template: path.resolve(__dirname, 'public', 'index.html')
-            }
-        )
+            }),
+        new MiniCssExtractPlugin({
+            filename: "./src/yourfile.css",
+          }),
     ],
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),

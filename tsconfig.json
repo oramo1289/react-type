@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "declaration": true,//para crear archivos d.ts
+      "outDir": "./dist/",
+      "sourceMap": true,
+      "noImplicitAny": true, //no se puede usar any
+      "module": "es6", //lo que acepta antes de compilarlo a es5
+      "target": "es5",
+      "jsx": "react", //compila react
+      "allowJs": true,//deja importar archivos js tambien no solo ts
+      "allowSyntheticDefaultImports" : true, //permite importar por default
+      "esModuleInterop" : true, //permite importar componentes sin el "* as"
+      "moduleResolution": "node", // para que deje usar componentes de node_modules
+      "removeComments": true //remueve comentarios al compilar a js  
+    }
+}
