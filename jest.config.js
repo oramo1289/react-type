@@ -4,7 +4,8 @@ module.exports = {
   setupFilesAfterEnv:['<rootDir>/src/__tests__/config/importJestDOM.ts'],
   moduleNameMapper:{
     "\\.(css|scss|less)$": "identity-obj-proxy"
-  }
+  },
+  testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
 };
 
 // module.exports = {
