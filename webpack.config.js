@@ -14,17 +14,23 @@ module.exports = {
         extensions: ['.tsx', '.ts','.js', '.jsx' ] //the file extensions to be used by Webpack.
     },
     module: {
+        loaders: [
+            {exclude: ['node_modules'], loader: 'babel', test: /\.jsx?$/},
+            {loader: 'style-loader!css-loader', test: /\.css$/},
+            {loader: 'url-loader', test: /\.gif$/},
+            {loader: 'file-loader', test: /\.(ttf|eot|svg)$/},
+        ],
         rules: [ // the rules Webpack will use when it works on the files
             {
                 test: /\.tsx?$/,
                 use: ['ts-loader'],
                 exclude: /node_modules/
             },
-            // {
-            //     test: /\.jsx?$/,
-            //     use: ['babel-loader'],
-            //     exclude: /node_modules/,
-            // },
+            {
+                test: /\.jsx?$/,
+                use: ['babel-loader'],
+                exclude: /node_modules/,
+            },
             {
                 enforce: "pre",
                 test: /\.js$/,
